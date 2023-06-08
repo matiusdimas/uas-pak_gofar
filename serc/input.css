@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    @variants responsive {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+      }
+    }
+  }
+
+.hamburger-active > span:nth-child(1) {
+    @apply rotate-45 -translate-y-[3px] scale-125;
+  }
+  
+  .hamburger-active > span:nth-child(2) {
+    @apply scale-0;
+  }
+  
+  .hamburger-active > span:nth-child(3) {
+    @apply -rotate-45 scale-125 translate-y-[3px];
+  }
+  
+  
+  .navini {
+    @apply opacity-100  transition-all duration-300;
+  }
+  
+  .navnull {
+    @apply opacity-0 invisible transition-all duration-300;
+  }
+
+  .dihover {
+    @apply hover:opacity-80 duration-200 active:opacity-100 active:scale-105;
+  }
