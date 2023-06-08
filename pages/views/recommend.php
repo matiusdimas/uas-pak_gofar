@@ -36,7 +36,7 @@ $whereClause = "";
 if (!empty($whereClauses)) {
     $whereClause = "WHERE " . implode(" AND ", $whereClauses);
 }
-$sql = "SELECT nm_rumah, harga_rumah, alamat_rumah, gambar_rumah, tipe FROM data_perumahan $whereClause limit 15";
+$sql = "SELECT * FROM data_perumahan $whereClause limit 15";
 $conn->query($sql, MYSQLI_ASYNC);
 $result =  $conn->reap_async_query();
 $rows = array();
@@ -59,16 +59,19 @@ while ($row = mysqli_fetch_assoc($resultTipe)) {
     $rowsTipe[] = $row;
 }
 
+
+
 ?>
 
 
 <?php
 include('../layouts/head.php')
 ?>
-
 <?php
 include('../layouts/navbar.php')
 ?>
+
+
 <div class="grid h-screen">
     <div class="mt-20 mb-5 px-4 grid place-items-center">
         <div class="">
@@ -119,12 +122,19 @@ include('../layouts/navbar.php')
                     foreach ($rows as $row) {
                         $imageData = base64_encode($row['gambar_rumah']); ?>
                         <div>
-                            <img class="rounded-lg w-40 lg:w-56 h-36" src="data:image/jpeg;base64,<?php echo $imageData ?>" alt="rumah">
-                            <div class="ml-2">
-                                <p class="text-blue-900 font-semibold">Rp 157 Juta</p>
-                                <p>Tipe <?php echo $row['tipe'] ?></p>
-                                <p class="font-light text-xs first-letter:uppercase "><?php echo $row['alamat_rumah'] ?></p>
-                            </div>
+                            <form class="formRumah" action="./rumahdesc.php" method="GET">
+                                <div class="hover:bg-slate-200  pb-1 rounded-md duration-200">
+                                    <a href="javascript: submit()">
+                                        <img class="rounded-lg w-40 lg:w-56 h-36" src="data:image/jpeg;base64,<?php echo $imageData ?>" alt="rumah">
+                                        <div class="ml-2">
+                                            <p class="text-blue-900 font-semibold">Rp <?php echo number_format($row['harga_rumah']) ?></p>
+                                            <p>Tipe <?php echo $row['tipe'] ?></p>
+                                            <p class="font-light text-xs first-letter:uppercase "><?php echo $row['alamat_rumah'] ?></p>
+                                            <input type="hidden" name="idRumah" value="<?php echo $row['id'] ?>">
+                                        </div>
+                                    </a>
+                                </div>
+                            </form>
                         </div>
                 <?php }
                 } else {
@@ -134,14 +144,21 @@ include('../layouts/navbar.php')
             </div>
         </div>
     </div>
-    
+
     <?php
     include('../layouts/footer.php')
     ?>
 
 </div>
+<script>
+    const formRumah = document.querySelectorAll('.formRumah');
 
-
+    formRumah.forEach(function(button) {
+        button.addEventListener('click', function() {
+            button.submit();
+        });
+    });
+</script>
 <?php
 include('../layouts/bottom.php')
 ?>

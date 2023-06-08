@@ -47,9 +47,9 @@ include('../layouts/head.php')
                         <div class="flex-shrink-0 snap-center">
                             <img class="rounded-lg  h-36" src="data:image/jpeg;base64,<?php echo $imageData ?>" alt="rumah">
                             <div class="ml-2">
-                                <p class="text-blue-900 font-semibold">Rp 157 Juta</p>
-                                <p>Tipe <?= $row['tipe'] ?></p>
-                                <p class="font-light text-xs first-letter:uppercase "><?php echo $row['alamat_rumah'] ?></p>
+                                <p class="text-blue-900 font-semibold">Rp <?php echo number_format($row['harga_rumah']) ?></p>
+                                <p >Tipe <?= $row['tipe'] ?></p>
+                                <p name='alamat' class="font-light text-xs first-letter:uppercase "><?php echo $row['alamat_rumah'] ?></p>
                             </div>
                         </div>
 
