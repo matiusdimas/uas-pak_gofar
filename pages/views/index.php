@@ -1,7 +1,7 @@
 <?php
 include('../connect.php');
 session_start();
-$sql = "SELECT nm_rumah, harga_rumah, alamat_rumah, gambar_rumah, tipe FROM data_perumahan order by tanggal desc limit 5";
+$sql = "SELECT * FROM data_perumahan order by tanggal desc limit 5";
 $conn->query($sql, MYSQLI_ASYNC);
 $result =  $conn->reap_async_query();
 
@@ -44,15 +44,17 @@ include('../layouts/head.php')
                     while ($row = $result->fetch_assoc()) {
                         // Convert BLOB data to base64 encoding
                         $imageData = base64_encode($row['gambar_rumah']); ?>
-                        <div class="flex-shrink-0 snap-center">
-                            <img class="rounded-lg  h-36" src="data:image/jpeg;base64,<?php echo $imageData ?>" alt="rumah">
-                            <div class="ml-2">
-                                <p class="text-blue-900 font-semibold">Rp <?php echo number_format($row['harga_rumah']) ?></p>
-                                <p >Tipe <?= $row['tipe'] ?></p>
-                                <p name='alamat' class="font-light text-xs first-letter:uppercase "><?php echo $row['alamat_rumah'] ?></p>
+                        <form class="formRumah" action="./rumahdesc.php" method="GET">
+                            <div class="flex-shrink-0 snap-center">
+                                <img class="rounded-lg  h-36" src="data:image/jpeg;base64,<?php echo $imageData ?>" alt="rumah">
+                                <div class="ml-2">
+                                    <p class="text-blue-900 font-semibold">Rp <?php echo number_format($row['harga_rumah']) ?></p>
+                                    <p>Tipe <?= $row['tipe'] ?></p>
+                                    <p name='alamat' class="font-light text-xs first-letter:uppercase "><?php echo $row['alamat_rumah'] ?></p>
+                                </div>
                             </div>
-                        </div>
-
+                            <input type="hidden" name="idRumah" value="<?php echo $row['id'] ?>">
+                        </form>
                 <?php  }
                 } else {
                     echo "Image not found.";
@@ -77,7 +79,15 @@ include('../layouts/footer.php')
 ?>
 
 
+<script>
+    const formRumah = document.querySelectorAll('.formRumah');
 
+    formRumah.forEach(function(button) {
+        button.addEventListener('click', function() {
+            button.submit();
+        });
+    });
+</script>
 <script src="../js/indexphp.js?v=4"></script>
 <?php
 include('../layouts/bottom.php')

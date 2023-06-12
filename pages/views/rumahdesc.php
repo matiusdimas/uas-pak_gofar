@@ -48,7 +48,7 @@ include('../layouts/navbar.php')
                             <p class="first-letter:uppercase "><?php echo $row['alamat_rumah'] ?></p>
                             <div>
                                 <p>Keterangan : </p>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A eum accusantium, error maxime saepe libero!</p>
+                                <p><?= $row['keterangan'] ?></p>
                             </div>
 
                         </div>

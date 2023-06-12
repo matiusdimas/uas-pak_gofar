@@ -40,7 +40,7 @@ function activePage($page)
                 <?php
                 if (isset($_SESSION['username'])) { ?>
                     <li>
-                        <a href="./profile.php" class="<?php echo activePage('login.php'); ?>  md:hidden">
+                        <a href="./settings.php" class="<?php echo activePage('login.php'); ?>  md:hidden">
                             Profile
                         </a>
                     </li>
@@ -63,16 +63,18 @@ function activePage($page)
         <?php
         if (isset($_SESSION['username'])) { ?>
             <div>
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-4 mt-1">
                     <div class="w-8">
-                        <img class="cursor-pointer" src="../img/shopping-cart.png" alt="cart">
+                        <a href="./favorit.php" class="hover:bg-slate-500 rounded-full duration-200">
+                            <img class="cursor-pointer" src="../img/heart.png" alt="cart">
+                        </a>
                     </div>
                     <div id="profileDrop" class="hidden md:flex md:gap-3 text-white px-3 py-1 bg-blue-950 rounded-md duration-200 hover:opacity-80 active:opacity-100 active:scale-105 cursor-pointer">Profile <span class="block font-semibold -mt-[1px]">v</span>
                     </div>
                 </div>
                 <div id="profileDropList" class="hidden border-x-2 border-b-2 absolute z-50 bg-white rounded-b-md py-1 ml-12">
                     <ul class="grid justify-center">
-                        <li><a href="#" class="px-4 py-1 hover:bg-slate-200 duration-200 active:opacity-80">Settings</a></li>
+                        <li><a href="./settings.php" class="px-4 py-1 hover:bg-slate-200 duration-200 active:opacity-80">Settings</a></li>
                         <li><a href="./logout.php" class="px-5 py-1 rounded-b-md hover:bg-slate-200 duration-200 active:opacity-80">Logout</a></li>
                     </ul>
                 </div>

@@ -3,7 +3,7 @@
 
 <?php 
 if(isset($_SESSION['username'])) {
-echo '<script src="../js/profileDrop.js?v=4"></script>';
+echo '<script src="../js/profileDrop.js?v=5"></script>';
 }
 ?>
 
