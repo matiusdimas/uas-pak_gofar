@@ -50,7 +50,7 @@ include('../layouts/navbar.php');
 <div class="bg-slate-200 flex justify-center items-center h-screen ">
     <div class="h-full w-full bg-bottom bg-cover bg-no-repeat grid place-items-center bg-[url('../pages/img/pexels-expect-best-323780.jpg')]">
         <form method="post">
-            <div class=" px-16 py-10 bg-blue-950 flex gap-4 flex-col justify-center items-center rounded-md text-white">
+            <div class=" px-5 md:px-16 py-10 bg-blue-950 flex gap-4 flex-col justify-center items-center rounded-md text-white">
                 <h1 class="font-bold border-b-4 px-3 border-red-500">Login</h1>
                 <div>
                     <input name="username" type="text" class="rounded-md px-3 py-1 text-blue-950 focus:outline-none focus:border-2 focus:border-blue-500 border-2 border-transparent duration-100" placeholder="Username/Email" required>

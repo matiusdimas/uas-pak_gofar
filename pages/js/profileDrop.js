@@ -5,7 +5,7 @@ const profileDropList = document.getElementById('profileDropList')
 
 profileDrop.addEventListener('click', ()=> {
     event.stopPropagation()
-    profileDropList.classList.remove('hidden')
+    profileDropList.classList.toggle('hidden')
     
 })
 window.addEventListener('click', ()=>{

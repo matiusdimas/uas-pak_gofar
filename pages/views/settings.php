@@ -1,6 +1,10 @@
 <?php
 include('../connect.php');
 session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: ./index.php");
+}
+
 $sql = "SELECT * FROM data_perumahan order by tanggal desc limit 5";
 $conn->query($sql, MYSQLI_ASYNC);
 $result =  $conn->reap_async_query();
@@ -35,8 +39,8 @@ include('../layouts/head.php')
     <?php
     include('../layouts/navbar.php')
     ?>
-    <div class="bg-slate-200 my-32 px-10 py-5">
-        <h1 class="font-bold text-lg border-b-2 w-full  pt-5 border-black">Account Settings</h1>
+    <div class="bg-slate-200 my-32 px-2 md:px-10 py-5">
+        <h1 class="font-bold text-lg border-b-2 w-full  pt-5 border-black">Ganti Password</h1>
         <form method="post" class="grid gap-4">
             <div class="flex gap-4 mt-5">
                 <div class="grid gap-2 items-center">

@@ -19,7 +19,7 @@ function activePage($page)
             <span class="w-6 h-[3px] bg-black transition duration-300 ease-in-out"></span>
             <span class="w-6 h-[3px] bg-black transition duration-300 ease-in-out origin-bottom-left"></span>
         </div>
-        <div id="list-nav" class="navnull absolute z-[500] left-0 mt-12 md:mt-0 w-full md:w-auto  bg-white text-center md:static md:flex md:opacity-100 md:bg-transparent md:backdrop-blur-none md:visible md:shadow-none md:border-b-0 lg:-ml-10">
+        <div id="list-nav" class="navnull absolute z-[500] left-0 mt-12 md:-ml-10 md:mt-0 w-full md:w-auto  bg-white text-center md:static md:flex md:opacity-100 md:bg-transparent md:backdrop-blur-none md:visible md:shadow-none md:border-b-0">
             <ul class="md:gap-x-10 md:flex md:items-center">
                 <li>
                     <a href="./index.php" class="<?php echo activePage('index.php'); ?>">
@@ -27,16 +27,10 @@ function activePage($page)
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="<?php echo activePage('about.php'); ?>">
-                        About
+                    <a href="./recommend.php" class="<?php echo activePage('recommend.php'); ?>">
+                        Lihat Rumah
                     </a>
                 </li>
-                <li>
-                    <a href="#" class="<?php echo activePage('contact.php'); ?>">
-                        Contact
-                    </a>
-                </li>
-
                 <?php
                 if (isset($_SESSION['username'])) { ?>
                     <li>

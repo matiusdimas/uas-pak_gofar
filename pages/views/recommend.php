@@ -72,14 +72,14 @@ include('../layouts/navbar.php')
 ?>
 
 
-<div class="grid h-screen">
+<div class="grid h-screen bg-white">
     <div class="mt-20 mb-5 px-4 grid place-items-center">
         <div class="">
             <div class="flex justify-center mb-4">
-                <form method="POST" class="bg-slate-200 px-3 py-2 rounded-md">
+                <form method="POST" class="bg-slate-200 px-1 md:px-3 py-2 rounded-md">
                     <div class="flex gap-4 items-center">
                         <div>
-                            <select name="optionDaerah" class="bg-inherit cursor-pointer">
+                            <select name="optionDaerah" class="bg-inherit cursor-pointer text-xs md:text-base">
                                 <?php
                                 if ($daerahTrue) { ?>
                                     <option value="<?= $nilai1 ?>"><?= $nilai1 ?></option>
@@ -96,7 +96,7 @@ include('../layouts/navbar.php')
                             </select>
                         </div>
                         <div>
-                            <select name="optionTipe" class="bg-inherit">
+                            <select name="optionTipe" class="bg-inherit cursor-pointer text-xs md:text-base">
                                 <?php
                                 if ($tipeTrue) { ?>
                                     <option value="<?= $nilai2 ?>"><?= $nilai2 ?></option>
@@ -112,7 +112,7 @@ include('../layouts/navbar.php')
                                 ?>
                             </select>
                         </div>
-                        <button type="submit" name="submit" class="bg-blue-500 duration-200 rounded-md hover:opacity-80 active:scale-105 text-white px-3 py-1">Apply Filters</button>
+                        <button type="submit" name="submit" class="bg-blue-500 duration-200 rounded-md hover:opacity-80 active:scale-105 text-white px-3 py-1 text-xs md:text-base">Apply Filters</button>
                     </div>
                 </form>
             </div>
@@ -138,17 +138,16 @@ include('../layouts/navbar.php')
                         </div>
                 <?php }
                 } else {
-                    echo "Image not found.";
+                    echo "Rumah Tidak Di Temukan";
                 }
                 ?>
             </div>
         </div>
-    </div>
 
+    </div>
     <?php
     include('../layouts/footer.php')
     ?>
-
 </div>
 <script>
     const formRumah = document.querySelectorAll('.formRumah');

@@ -4,6 +4,7 @@ include('../connect.php');
 
 
 if (isset($_SESSION['username'])) {
+    if (isset($_POST['submit'])) {
     $iduser = $_SESSION['id'];
     $idrumah = $_POST['idRumah'];
     $sqldel = "DELETE from data_favorites where id_user = $iduser and id_data_perumahan = $idrumah";
@@ -11,4 +12,5 @@ if (isset($_SESSION['username'])) {
     $conn->reap_async_query();
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
+    }
 }

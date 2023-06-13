@@ -1,8 +1,8 @@
 <?php
 include("../connect.php");
 session_start();
-if (!isset($_SESSION['username'])) {
-    header("Location : ./index.php");
+if(!isset($_SESSION['username'])) {
+    header("Location: ./index.php");
 }
 $iduser = $_SESSION["id"];
 $sql = "  SELECT data_favorites.id_user, data_perumahan.* FROM data_favorites 
@@ -43,9 +43,9 @@ include("../layouts/navbar.php")
                             </form>
                         </div>
                 <?php }
-                } else {
-                    echo "Image not found.";
-                }
+                } else {?>
+                    <p>Kamu Belum Menambahkan Rumah Kesukaanmu</p>
+                <?php }
                 ?>
             </div>
         </div>
