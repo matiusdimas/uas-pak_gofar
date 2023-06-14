@@ -1,9 +1,18 @@
 <?php
 $current_page = basename($_SERVER['PHP_SELF']);
+// code tersebut mendefinisikan sebuah variabel bernama $current_page yang berisi nilai dari indeks ‘PHP_SELF’ dari variabel superglobal $_SERVER. Variabel superglobal $_SERVER adalah sebuah array asosiatif yang berisi informasi tentang server dan lingkungan eksekusi. Indeks ‘PHP_SELF’ menunjukkan nama file dari script yang sedang dijalankan. Fungsi basename() digunakan untuk mengambil nama file tanpa path atau ekstensi. Dengan demikian, variabel $current_page akan berisi nama file dari halaman saat ini.
+
+
 function activePage($page)
+// code tersebut mendefinisikan sebuah fungsi bernama activePage yang menerima sebuah parameter $page.
+
 {
     global $current_page;
+    // Menggunakan kata kunci global untuk mengakses variabel $current_page yang sudah didefinisikan sebelumnya di luar fungsi. Kata kunci global digunakan untuk membuat variabel lokal dapat merujuk ke variabel global dengan nama yang sama.
+
     return ($current_page == $page) ? 'text-lg bg-blue-950 text-white md:border-b-4 md:border-[#EA5455] font-semibold px-2 py-1 block 2xl:text-6xl md:bg-transparent md:text-blue-950' : 'text-lg 2xl:text-6xl hover:bg-[#E4DCCF] hover:text-slate-900 md:hover:border-b-4 md:hover:border-[#E4DCCF] md:hover:text-blue-950 px-2 py-1 block transition-all active:scale-95 active:opacity-80 md:hover:bg-inherit text-blue-950 font-semibold md:border-b-4 md:border-transparent';
+    // Mengembalikan sebuah string yang berisi nilai dari operator ternary. Operator ternary adalah sebuah operator bersyarat yang memiliki tiga operand: kondisi, ekspresi jika kondisi benar, dan ekspresi jika kondisi salah. Dalam hal ini, kondisinya adalah apakah nilai dari variabel $current_page sama dengan nilai dari parameter $page atau tidak dengan menggunakan operator perbandingan ==. Jika sama, maka ekspresi yang  akan dikembalikan
+    // code ini bertujuan untuk membuat navbar aktif ketika pada halaman tertentu
 }
 ?>
 <div class="bg-transparent fixed top-0 z-[500] w-full  flex md:justify-center">
@@ -25,6 +34,7 @@ function activePage($page)
                     <a href="./index.php" class="<?php echo activePage('index.php'); ?>">
                         Home
                     </a>
+                    <!-- code php tersbut untuk memanggil fungsi activepage dan mengirimkan parameter berupa nama file -->
                 </li>
                 <li>
                     <a href="./recommend.php" class="<?php echo activePage('recommend.php'); ?>">
@@ -79,5 +89,6 @@ function activePage($page)
             </div>
         <?php }
         ?>
+        <!-- code tersebut bertujuan untuk menampilkan menu dropdown atau tombol login bergantung pada apakah pengguna saat ini memiliki informasi sesi username atau tidak. -->
     </nav>
 </div>

@@ -1,9 +1,19 @@
 <?php
 include('../connect.php');
+// code tersebut meng-include file ../connect.php, yang berisi kode untuk membuat koneksi ke database MySQL menggunakan ekstensi mysqli.
+
 session_start();
+// yang berguna untuk membuat dan mengakses data session
+
 $sql = "SELECT * FROM data_perumahan order by tanggal desc limit 5";
+// code tersebut menentukan variabel $sql yang berisi perintah SQL untuk memilih semua data dari tabel data_perumahan dan mengurutkannya berdasarkan kolom tanggal secara menurun (descending) dengan batas 5 baris.
+
 $conn->query($sql, MYSQLI_ASYNC);
+// code tersebut menjalankan query SQL dengan menggunakan metode query() dari objek $conn yang dibuat di file ../connect.php. Metode ini menerima dua parameter, yaitu query SQL dan mode query. Mode query yang digunakan adalah MYSQLI_ASYNC, yang berarti query akan dieksekusi secara asinkron (tidak menunggu hasilnya)
+
 $result =  $conn->reap_async_query();
+// code tersebut menangkap hasil query asinkron dengan menggunakan metode reap_async_query() dari objek $conn dan menyimpannya di variabel $result.
+
 
 ?>
 
@@ -39,11 +49,16 @@ include('../layouts/head.php')
                 <div id="left-gambar" class="absolute z-[99] lg:hidden left-12 self-center bg-blue-800 px-4 py-2 text-white  font-semibold cursor-pointer opacity-75 text-lg rounded-full transition-all hover:opacity-100 active:bg-blue-950 select-none">
                     &lt;</div>
                 <?php
+                //  code Berikut ini memeriksa apakah variabel $result yang berisi objek mysqli_result memiliki jumlah baris yang lebih dari nol dengan menggunakan properti num_rows. Jika ya, maka code tersebut akan melanjutkan eksekusi. Jika tidak, maka code tersebut akan menampilkan pesan “Image not found.”.
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        // Convert BLOB data to base64 encoding
+                        // code tersebut menggunakan perulangan while untuk mengambil setiap baris data dari objek mysqli_result dengan menggunakan metode fetch_assoc(), yang mengembalikan array asosiatif yang berisi nama kolom dan nilai data. Setiap baris data disimpan di variabel $row
+
+                        
                         $imageData = base64_encode($row['gambar_rumah']); ?>
+                        <!-- code tersebut mengubah data BLOB yang berisi gambar rumah dari kolom gambar_rumah menjadi encoding base64 dengan menggunakan fungsi base64_encode(). Encoding base64 ini disimpan di variabel $imageData -->
+
                             <form class="formRumah flex-shrink-0 snap-center cursor-pointer hover:bg-slate-400 duration-200 rounded-md px-3 py-1" action="./rumahdesc.php" method="GET">
                                 <img class="rounded-lg w-52 h-36" src="data:image/jpeg;base64,<?php echo $imageData ?>" alt="rumah">
                                 <div class="ml-2">
@@ -53,6 +68,7 @@ include('../layouts/head.php')
                                 </div>
                                 <input type="hidden" name="idRumah" value="<?php echo $row['id'] ?>">
                             </form >
+                            <!-- code tersebut menampilkan data rumah dalam bentuk HTML yang berisi elemen-elemen -->
                 <?php  }
                 } else {
                     echo "Image not found.";
@@ -79,13 +95,21 @@ include('../layouts/footer.php')
 
 <script>
     const formRumah = document.querySelectorAll('.formRumah');
+    //  code tersebut menggunakan metode querySelectorAll() untuk memilih semua elemen HTML yang memiliki kelas formRumah dan menyimpannya dalam variabel formRumah. Metode ini mengembalikan sebuah NodeList yang berisi elemen-elemen yang sesuai dengan selektor CSS yang diberikan.
 
+    // code berikut menggunakan metode forEach() untuk melakukan iterasi terhadap setiap elemen dalam NodeList formRumah dan menjalankan sebuah fungsi callback. Metode ini menerima sebuah fungsi sebagai parameter yang akan dijalankan untuk setiap elemen dalam NodeList.
     formRumah.forEach(function(button) {
+
+        // code tersebut menambahkan event listener untuk setiap elemen dalam NodeList formRumah dengan menggunakan metode addEventListener(). Metode ini menerima dua parameter, yaitu jenis event yang ingin ditangani dan fungsi yang akan dijalankan ketika event terjadi. Dalam hal ini, jenis event yang ditangani adalah click, yang berarti fungsi akan dijalankan ketika elemen diklik oleh pengguna.
         button.addEventListener('click', function() {
+
+
             button.submit();
+            //  code tersebut menjalankan fungsi yang berisi perintah untuk mengirimkan form HTML yang diklik oleh pengguna dengan menggunakan metode submit(). Metode ini akan mengirimkan data form ke URL yang ditentukan dalam atribut action dengan menggunakan metode yang ditentukan dalam atribut method
         });
     });
 </script>
+
 <script src="../js/indexphp.js?v=4"></script>
 <?php
 include('../layouts/bottom.php')

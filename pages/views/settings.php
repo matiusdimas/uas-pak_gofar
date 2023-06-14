@@ -4,6 +4,7 @@ session_start();
 if (!isset($_SESSION['username'])) {
     header("Location: ./index.php");
 }
+// , code tersebut bertujuan untuk mengarahkan pengguna ke halaman index.php jika pengguna tidak memiliki informasi sesi username.
 
 $sql = "SELECT * FROM data_perumahan order by tanggal desc limit 5";
 $conn->query($sql, MYSQLI_ASYNC);

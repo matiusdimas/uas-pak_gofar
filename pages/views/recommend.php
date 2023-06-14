@@ -3,8 +3,11 @@ include('../connect.php');
 session_start();
 
 $whereClauses = array();
+//  code tersebut mendefinisikan sebuah variabel bernama $whereClauses yang berisi sebuah array kosong. Array ini akan digunakan untuk menyimpan klausa WHERE yang akan digunakan dalam query SQL nanti.
+
 if (!empty($_POST['optionDaerah'])) {
     $optionDaerah = $_POST['optionDaerah'];
+    // Variabel ini akan digunakan untuk menyimpan pilihan daerah yang dipilih oleh pengguna dari form HTML jika true.
 }
 if (!empty($_POST['optionTipe'])) {
     $optionTipe = $_POST['optionTipe'];
@@ -13,29 +16,26 @@ if (!empty($_POST['optionTipe'])) {
 
 if (empty($optionDaerah) || isset($optionDaerah) && $optionDaerah == 'Daerah') {
 } else {
-
     $nilai1 = $optionDaerah;
     $whereClauses[] = "alamat_rumah = '$nilai1'";
     $daerahTrue = true;
 }
 if (empty($optionTipe) || isset($optionTipe) && $optionTipe == 'Tipe') {
 } else {
-
     $nilai2 = $optionTipe;
     $whereClauses[] = "tipe = '$nilai2'";
     $tipeTrue = true;
 }
 
-// Cek apakah klausa WHERE kedua diberikan
-// if (isset($_POST['tipe'])) {
-//     $nilai2 = $_POST['tipe'];
-//     $whereClauses[] = "tipe = '$nilai2'";
-// }
 
 $whereClause = "";
+// code tersebut mendefinisikan sebuah variabel bernama $whereClause yang berisi sebuah string kosong. Variabel ini akan digunakan untuk menyimpan klausa WHERE yang lengkap untuk query SQL nanti.
+
 if (!empty($whereClauses)) {
     $whereClause = "WHERE " . implode(" AND ", $whereClauses);
 }
+// code tersebut memeriksa apakah array $whereClauses kosong atau tidak dengan menggunakan fungsi empty(). Jika tidak kosong, maka code tersebut akan menetapkan nilai dari variabel $whereClause menjadi "WHERE " ditambah dengan hasil dari fungsi implode(). Fungsi implode() menggabungkan elemen-elemen dari array menjadi sebuah string dengan menggunakan pemisah yang diberikan sebagai parameter pertama. Dalam hal ini, pemisahnya adalah " AND " yang merupakan operator logika untuk menggabungkan dua atau lebih kondisi dalam query SQL. Dengan demikian, variabel $whereClause akan berisi klausa WHERE yang terdiri dari kondisi-kondisi yang berasal dari array $whereClauses dan dipisahkan oleh operator AND.
+
 $sql = "SELECT * FROM data_perumahan $whereClause limit 15";
 $conn->query($sql, MYSQLI_ASYNC);
 $result =  $conn->reap_async_query();
@@ -43,7 +43,11 @@ $rows = array();
 while ($row = mysqli_fetch_assoc($result)) {
     $rows[] = $row;
 }
+
+
 $sqlFilterDaerah = "SELECT DISTINCT alamat_rumah FROM data_perumahan order by alamat_rumah asc";
+// Distinct dalam MySQL adalah sebuah klausa yang digunakan dalam perintah SELECT untuk menghapus baris duplikat dari hasil query
+
 $conn->query($sqlFilterDaerah, MYSQLI_ASYNC);
 $resultDaerah = $conn->reap_async_query();
 $rowsDaerah = array();
@@ -89,6 +93,7 @@ include('../layouts/navbar.php')
                                 <?php
                                 if ($resultDaerah->num_rows > 0) {
                                     foreach ($rowsDaerah as $row) { ?>
+                                    <!-- foreach untuk mengambil data-data dari array $rowsDaerah dengan menggunakan variabel $row sebagai penampung sementara. Array $rowsDaerah menyimpan data-data yang berasal dari hasil query SQL asinkron  -->
                                         <option value="<?= $row['alamat_rumah'] ?>"><?= $row['alamat_rumah'] ?></option>
                                 <?php }
                                 }
@@ -151,7 +156,6 @@ include('../layouts/navbar.php')
 </div>
 <script>
     const formRumah = document.querySelectorAll('.formRumah');
-
     formRumah.forEach(function(button) {
         button.addEventListener('click', function() {
             button.submit();

@@ -12,6 +12,6 @@ function confirmPassword(event) {
     }
 };
 
-
 password.addEventListener('input', confirmPassword)
 cpassword.addEventListener('input', confirmPassword)
+// code tersebut bertujuan untuk memeriksa apakah nilai dari elemen input password dan confirm password sama atau tidak dan menampilkan atau menyembunyikan elemen teks yang memberi tahu pengguna tentang kesesuaian password.

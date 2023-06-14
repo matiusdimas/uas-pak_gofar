@@ -11,5 +11,6 @@ if (isset($_SESSION['username'])) {
         $resultInsert = mysqli_query($conn, $sqlInsert);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
+        // code header tersebut bertujuan untuk mengarahkan pengguna kembali ke halaman sebelumnya dan menghentikan eksekusi kode selanjutnya.
     }
 }
