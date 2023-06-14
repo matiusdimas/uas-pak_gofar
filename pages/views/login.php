@@ -11,8 +11,8 @@ if (isset($_POST['submit'])) {
     $password = md5($_POST['password']);
 
     // Persiapkan pernyataan SQL dengan prepared statements
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
-    $stmt->bind_param("ss", $username, $password);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE (email = ? OR username = ?) AND password = ?");
+    $stmt->bind_param("sss", $username, $username, $password);
 
     // Eksekusi pernyataan SQL
     $stmt->execute();

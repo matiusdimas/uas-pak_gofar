@@ -87,7 +87,7 @@ include('../layouts/navbar.php')
                     if (isset($_POST['submit'])  && $password == $cpassword) {
                         if ($erremail == false && $errusername == false) { ?>
                             <div id="successmessage" class="fixed z-[999] bg-blue-500 px-2 py-4 rounded-md border-2 border-white grid place-items-center text-xs md:text-base">
-                                <p>Register Berhasil Silahkan Login <a href="./login.php" class="underline text-red-200 hover:opacity-80">Login</a> <span id="closeX" class="bg-blue-950 px-2 py-1 rounded-full hover:opacity-80 cursor-pointer mt-1 ml-2">X</span> </p>
+                                <p>Register Berhasil Silahkan <a href="./login.php" class="underline text-red-200 hover:opacity-80">Login</a> <span id="closeX" class="bg-blue-950 px-2 py-1 rounded-full hover:opacity-80 cursor-pointer mt-1 ml-2">X</span> </p>
                             </div>
                     <?php }
                     }
